@@ -1,0 +1,71 @@
+{
+    "peliculas": [
+      {
+        "id": 1,
+        "nombre": "El sexto sentido",
+        "director": "M. Night Shyamalan",
+        "clasificacion": "Drama",
+        "portada": "https://static1.mujerhoy.com/www/multimedia/201804/11/media/cortadas/peliculas-dia-de-la-madre-brave.jpg"
+      },
+      {
+        "id": 2,
+        "nombre": "Pulp Fiction",
+        "director": "Tarantino",
+        "clasificacion": "Acción",
+        "portada": "https://static1.mujerhoy.com/www/multimedia/201804/11/media/cortadas/peliculas-dia-de-la-madre-brave.jpg"
+      },
+      {
+        "id": 3,
+        "nombre": "Todo Sobre Mi Madre",
+        "director": "Almodobar",
+        "clasificacion": "Drama",
+        "portada": "https://static1.mujerhoy.com/www/multimedia/201804/11/media/cortadas/peliculas-dia-de-la-madre-brave.jpg"
+      },
+      {
+        "id": 4,
+        "nombre": "300",
+        "director": "Zack Snyder",
+        "clasificacion": "Acción",
+        "portada": "https://static1.mujerhoy.com/www/multimedia/201804/11/media/cortadas/peliculas-dia-de-la-madre-brave.jpg"
+      },
+      {
+        "id": 5,
+        "nombre": "El silencio de los corderos",
+        "director": "Jonathan Demme",
+        "clasificacion": "Drama",
+        "portada": "https://static1.mujerhoy.com/www/multimedia/201804/11/media/cortadas/peliculas-dia-de-la-madre-brave.jpg"
+      },
+      {
+        "id": 6,
+        "nombre": "Forrest Gump",
+        "director": "Robert Zemeckis",
+        "clasificacion": "Comedia",
+        "portada": "https://static1.mujerhoy.com/www/multimedia/201804/11/media/cortadas/peliculas-dia-de-la-madre-brave.jpg"
+      },
+      {
+        "id": 7,
+        "nombre": "Las Hurdes",
+        "director": "Luis Buñuel",
+        "clasificacion": "Documental",
+        "portada": "https://static1.mujerhoy.com/www/multimedia/201804/11/media/cortadas/peliculas-dia-de-la-madre-brave.jpg"
+      }
+    ],
+    "clasificaciones": [
+      {
+        "nombre": "Drama",
+        "id": 1
+      },
+      {
+        "nombre": "Comedia",
+        "id": 2
+      },
+      {
+        "nombre": "Documental",
+        "id": 3
+      },
+      {
+        "nombre": "Acción",
+        "id": 4
+      }
+    ]
+  }
