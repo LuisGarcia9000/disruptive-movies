@@ -36,3 +36,12 @@
     transform: rotate(360deg);
   }
 }
+
+.border {
+  border: #282c34 1 1;
+  border-radius: 5px;
+}
+
+#collasible-nav-dropdown {
+  color: black;
+}

@@ -1,18 +1,25 @@
-import { Button, Card, Col, Row } from "react-bootstrap";
+import { Button, Card, Col, Image, Row } from "react-bootstrap";
 import { format } from "date-fns";
 import { Movie } from "../types/interfaces";
+import FavouriteIcon from "../../assets/favorite.png";
+import MailIcon from "../../assets/mail.png";
 
 interface MovieCardProps {
   movie: Movie;
   onMarkAsFavourity?: (movie: Movie) => void;
+  onShareByEmailEvent?: (movie: Movie) => void;
 }
 
 export default function MovieCard({
   movie,
   onMarkAsFavourity,
+  onShareByEmailEvent,
 }: MovieCardProps) {
   const addToFavourite = () => {
     onMarkAsFavourity && onMarkAsFavourity(movie);
+  };
+  const shareMovieInfo = () => {
+    onShareByEmailEvent && onShareByEmailEvent(movie);
   };
 
   return (
@@ -37,9 +44,16 @@ export default function MovieCard({
             </small>
           </Col>
           <Col>
+            {onShareByEmailEvent && (
+              <Button variant="light" size="sm" onClick={shareMovieInfo}>
+                <Image src={MailIcon} style={{ width: 20, height: 20 }} />
+              </Button>
+            )}
+          </Col>
+          <Col>
             {onMarkAsFavourity && (
-              <Button variant="info" size="sm" onClick={addToFavourite}>
-                Add to favourite
+              <Button variant="light" size="sm" onClick={addToFavourite}>
+                <Image src={FavouriteIcon} style={{ width: 20, height: 20 }} />
               </Button>
             )}
           </Col>

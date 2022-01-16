@@ -23,10 +23,10 @@ export default function Header({
   genres,
   onSearchEvent,
   onSearchByGenreEvent,
-  onFilterByDateEvent
+  onFilterByDateEvent,
 }: HeaderProps) {
   const [searchText, setSearchText] = useState("");
-  const [startDate, setStartDate] = useState(new Date("2021-01-01"));
+  const [startDate, setStartDate] = useState(new Date("2010-01-01"));
   const [endDate, setEndDate] = useState(new Date());
 
   const handleOnSearchClick = () => {
@@ -42,9 +42,11 @@ export default function Header({
   };
 
   return (
-    <Navbar bg="light" expand="lg">
+    <Navbar bg="light" expand="lg" className="py-3 mb-3">
       <Container fluid>
-        <Navbar.Brand href="#">Movies</Navbar.Brand>
+        <Navbar.Brand href="#">
+          <h1>Movies</h1>
+        </Navbar.Brand>
         <Navbar.Toggle aria-controls="navbarScroll" />
         <Navbar.Collapse id="navbarScroll">
           <Container>
@@ -52,7 +54,40 @@ export default function Header({
               <Col md={12}>
                 <Row>
                   <Col></Col>
-                  <Col md={1}>
+
+                  <Col md={6} className="border">
+                    <Row>
+                      <Col className="justify-content-center">
+                        <h6>Release Date:</h6>
+                      </Col>
+                    </Row>
+                    <Row>
+                      <Col>
+                        from:{" "}
+                        <DatePicker
+                          selected={startDate}
+                          onChange={(date) => date && setStartDate(date)}
+                        />
+                      </Col>
+                      <Col>
+                        to:{" "}
+                        <DatePicker
+                          selected={endDate}
+                          onChange={(date) => date && setEndDate(date)}
+                        />
+                      </Col>
+                      <Col>
+                        <Button
+                          variant="outline-secondary"
+                          onClick={handleOnFilterClick}
+                        >
+                          Filter
+                        </Button>
+                      </Col>
+                    </Row>
+                  </Col>
+
+                  <Col md={2}>
                     <NavDropdown title={"Genres"} id="collasible-nav-dropdown">
                       {genres.map((it) => (
                         <NavDropdown.Item
@@ -77,47 +112,12 @@ export default function Header({
                         onChange={(e) => setSearchText(e.target.value)}
                       />
                       <Button
-                        variant="outline-success"
+                        variant="outline-secondary"
                         onClick={handleOnSearchClick}
                       >
                         Search
                       </Button>
                     </Form>
-                  </Col>
-                </Row>
-              </Col>
-            </Row>
-
-            <Row>
-              <Col md={6} />
-              <Col>
-                <Row>
-                  <Col className="justify-content-center">
-                    <span>Release Date:</span>
-                  </Col>
-                </Row>
-                <Row>
-                  <Col>
-                    from:{" "}
-                    <DatePicker
-                      selected={startDate}
-                      onChange={(date) => date && setStartDate(date)}
-                    />
-                  </Col>
-                  <Col>
-                    to:{" "}
-                    <DatePicker
-                      selected={endDate}
-                      onChange={(date) => date && setEndDate(date)}
-                    />
-                  </Col>
-                  <Col>
-                    <Button
-                      variant="outline-success"
-                      onClick={handleOnFilterClick}
-                    >
-                      Filter
-                    </Button>
                   </Col>
                 </Row>
               </Col>

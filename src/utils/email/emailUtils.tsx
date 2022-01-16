@@ -1,50 +1,22 @@
-import { Mailer } from "nodemailer-react";
+import emailjs from "@emailjs/browser";
+import { format } from "date-fns";
 import { Movie } from "../../pages/types/interfaces";
-import { PasswordEmail } from "./template";
 
-/**
- * Parameters of the createTransport method
- * @see https://nodemailer.com/smtp/
- */
-const mailerConfig = {
-  transport: {
-    host: "smtp.example.com",
-    secure: true,
-    auth: { user: "username", pass: "password" },
-  },
-  defaults: {
-    from: { name: "mathieutu", address: "oss@mathieutu.dev" },
-  },
-};
+import { CONFIGS } from "./emailkeys";
 
-/** Record of all emails that will be available */
-const emailsList = {
-  PasswordEmail,
-};
-
-/** Instance of mailer to export */
-const mailer = Mailer(mailerConfig, emailsList);
-
-/**
- * Send mail in your application, by passing:
- * - Your email template name: key of the email in the record you've provided.
- * - The props of your email component
- * - The options of email (to, from, attachments, etc.) @see https://nodemailer.com/message/
- */
-
-export async function sendEmail(movie: Movie) {
-  /** A first email sent */
-  await mailer.send(
-    "PasswordEmail",
+export async function sendEmail(movie: Movie, email: string) {
+  return emailjs.send(
+    CONFIGS.SERVICE_ID,
+    CONFIGS.TEMPLATE_ID,
     {
-      firstName: "Mathieu",
-      brand: "MyWebsite",
-      newAccount: true,
-      password: Math.random().toString(36).substring(7),
+      email,
+      subgget: movie.title,
+      movie_image: movie.info.image_url,
+      movie_title: movie.title,
+      movie_release_date: movie.info.release_date
+        ? format(new Date(movie.info.release_date).getTime(), "MMM dd yyyy")
+        : "",
     },
-    {
-      to: "foo@bar.fr",
-      attachments: [{ content: "bar", filename: "foo.txt" }],
-    }
+    CONFIGS.USER_ID
   );
 }

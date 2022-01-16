@@ -8,10 +8,17 @@ import Header from "./components.tsx/Header";
 import MovieCard from "./components.tsx/MovieCard";
 import { Movie } from "./types/interfaces";
 
+import { init } from "@emailjs/browser";
+import ModalEmailSender from "./components.tsx/ModalEmailSender";
+init("user_nMXovQcht0GVLMSfGCSQP");
+
 const Main = () => {
-  const [movies, setMovies] = useState<Movie[]>(MovieData);
+  const [movies, setMovies] = useState<Movie[]>(MovieData.slice(0, 10));
   const [favourites, setFavourities] = useState<Movie[]>([]);
   const [genres, setGenres] = useState<string[]>([]);
+
+  const [movie, setMovie] = useState<Movie | null>(null);
+  const [showShareModal, setShowShareModal] = useState<boolean>(false);
 
   useEffect(() => {
     const aux = new Set<string>();
@@ -54,18 +61,26 @@ const Main = () => {
   };
 
   const handleAddToFavourity = (movie: Movie) => {
-    console.log("handleAddToFavourity");
     setFavourities([...favourites, movie]);
+  };
+
+  const handleShareMovie = (movie: Movie) => {
+    setMovie(movie);
+    setShowShareModal(true);
   };
 
   const movieCards = movies.map((movie, index) => (
     <Col key={index} md={3} className="mb-5">
-      <MovieCard movie={movie} onMarkAsFavourity={handleAddToFavourity} />
+      <MovieCard
+        movie={movie}
+        onMarkAsFavourity={handleAddToFavourity}
+        onShareByEmailEvent={handleShareMovie}
+      />
     </Col>
   ));
 
   return (
-    <Container>
+    <Container className="bg-secondary"> 
       <Header
         genres={genres}
         onSearchEvent={onHandleSearch}
@@ -77,6 +92,14 @@ const Main = () => {
       </CardGroup>
 
       {!isMobile && <Favourites favourites={favourites} />}
+
+      {movie && (
+        <ModalEmailSender
+          movie={movie}
+          show={showShareModal}
+          handleClose={() => setShowShareModal(false)}
+        />
+      )}
     </Container>
   );
 };
