@@ -41,6 +41,11 @@ export default function Header({
     onFilterByDateEvent && onFilterByDateEvent(startDate, endDate);
   };
 
+  const onSubmitHandle = (e: { preventDefault: () => void }) => {
+    e.preventDefault();
+    handleOnSearchClick();
+  };
+
   return (
     <Navbar bg="light" expand="lg" className="py-3 mb-3">
       <Container fluid>
@@ -101,7 +106,7 @@ export default function Header({
                   <Col md={3}>
                     <Form
                       className="d-flex"
-                      onSubmit={(e) => e.preventDefault()}
+                      onSubmit={onSubmitHandle}
                     >
                       <FormControl
                         type="search"

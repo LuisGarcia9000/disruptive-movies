@@ -32,7 +32,9 @@ export default function ModalEmailSender({
     <>
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
-          <Modal.Title>Share Movie Info: {movie.title}</Modal.Title>
+          <Modal.Title>
+            Share movie info: <strong>{movie.title}</strong>
+          </Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <Form onSubmit={shareByEmail}>
@@ -50,7 +52,7 @@ export default function ModalEmailSender({
               <Spinner animation="border" />
             ) : (
               <Button variant="primary" type="submit">
-                Submit
+                Send info by email
               </Button>
             )}
           </Form>

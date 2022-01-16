@@ -13,7 +13,7 @@ import ModalEmailSender from "./components.tsx/ModalEmailSender";
 init("user_nMXovQcht0GVLMSfGCSQP");
 
 const Main = () => {
-  const [movies, setMovies] = useState<Movie[]>(MovieData.slice(0, 10));
+  const [movies, setMovies] = useState<Movie[]>(MovieData.slice(0, 100));
   const [favourites, setFavourities] = useState<Movie[]>([]);
   const [genres, setGenres] = useState<string[]>([]);
 
